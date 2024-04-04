@@ -1,118 +1,125 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { Button, Text, Touchable, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const screenWidth = Dimensions.get('window').width;
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default function App() {
+  const screenWidth = Dimensions.get('window').width;
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
+    <View style={styles.container}>
+
+      <Text style={styles.titleText}>
+        There are 8 available events
       </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+
+      <View style={styles.card}>
+
+        <View style={[styles.centeredView, { marginTop: 20, marginBottom: 80 }]}>
+          <Text style={styles.cardTitleText}>
+            House Clean Up!!!
+          </Text>
+          <Text style={styles.bodyText}>
+            There's been a lot of trash building up, I want this to be cleaned up really quickly in the next couple of days, text me if you can do it
+          </Text>
+        </View>
+
+        <View style={styles.centeredView}>
+          <Text style={styles.points}>
+            10
+          </Text>
+          <Text style={styles.extraInfo}>
+            Points available
+          </Text>
+          <Text style={styles.bodyText}>
+            5 people have already signed up
+          </Text>
+        </View>
+
+        <View style={[styles.centeredView, { marginTop: 60 }]}>
+
+        </View>
+
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={[styles.button, {backgroundColor: '#EF3E3E'}]}>
+          <Text style= {{color: 'white'}}>Save for later</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button, {backgroundColor: '#659654'}]}>
+          <Text style= {{color: 'white'}}>Register</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 20, // Adjust as needed
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  button: {
+    width: 150,
+    height: 50,
+    borderWidth: 3,
+    borderRadius: 12,
+    margin: 10,
+    borderColor: 'white', // Change as needed
+    justifyContent: 'center', // This will center children vertically
+    alignItems: 'center', // This will center children horizontally
+    backgroundColor: '#3E3E3E',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: screenWidth,
+    backgroundColor: 'black', // Change this to the desired color
   },
-  highlight: {
-    fontWeight: '700',
+  card: {
+    padding: 10,
+    backgroundColor: 'white',
+    margin: 20,
+    borderRadius: 20,
+    width: screenWidth - 40,
+    height: 400,
   },
-});
 
-export default App;
+  bodyText: {
+    color: 'black',
+    fontSize: 14,
+  },
+
+  titleText: {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 20,
+    marginTop: 80,
+  },
+
+  cardTitleText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+
+  centeredView: {
+    alignItems: 'center',
+  },
+
+  points: {
+    color: 'black',
+    fontSize: 100,
+    textAlign: 'center',
+    alignSelf: 'center',
+    marginBottom: -10,
+  },
+  extraInfo: {
+    color: 'gray',
+    fontSize: 20,
+    alignSelf: 'center',
+  }
+});
